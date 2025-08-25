@@ -26,7 +26,7 @@ jobs:
       - name: 配置 Android SDK 与 NDK
         uses: android-actions/setup-android@v3
         with:
-          ndk-version: '25.2.9519653'
+          ndk-version: '23.1.7779620'
           sdk-platforms: 'android-33'
           build-tools-version: '34.0.0'
 
