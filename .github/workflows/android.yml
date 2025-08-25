@@ -26,7 +26,6 @@ jobs:
       - name: 配置 Android SDK 与 NDK
         uses: android-actions/setup-android@v3
         with:
-          # 这里指定 NDK 版本，可按你项目需要调整
           ndk-version: '25.2.9519653'
           sdk-platforms: 'android-33'
           build-tools-version: '34.0.0'
@@ -41,7 +40,7 @@ jobs:
 
       # 6. Gradle 编译（输出详细日志）
       - name: Gradle 编译
-        run: ./showtaps/gradlew assembleDebug --stacktrace --info
+        run: cd showtaps && ./gradlew assembleDebug --stacktrace --info
 
       # 7. 上传 APK 文件
       - name: 上传 APK
