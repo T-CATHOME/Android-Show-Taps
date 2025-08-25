@@ -30,19 +30,25 @@ jobs:
           sdk-platforms: 'android-33'
           build-tools-version: '34.0.0'
 
-      # 4. 赋予 gradlew 脚本执行权限
+      # 4. 配置 local.properties
+      - name: 配置 local.properties
+        run: |
+          echo "sdk.dir=/usr/local/lib/android/sdk" > showtaps/local.properties
+          echo "ndk.dir=/usr/local/lib/android/sdk/ndk/25.2.9519653" >> showtaps/local.properties
+
+      # 5. 授权 gradlew 执行权限
       - name: 授权 gradlew 执行权限
         run: chmod +x showtaps/gradlew
 
-      # 5. 列出目录内容（调试用，可选）
+      # 6. 查看 showtaps 目录内容
       - name: 查看 showtaps 目录内容
         run: ls -l showtaps/
 
-      # 6. Gradle 编译（输出详细日志）
+      # 7. Gradle 编译
       - name: Gradle 编译
         run: cd showtaps && ./gradlew assembleDebug --stacktrace --info
 
-      # 7. 上传 APK 文件
+      # 8. 上传 APK
       - name: 上传 APK
         uses: actions/upload-artifact@v4
         with:
